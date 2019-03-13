@@ -5,19 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace XamarinMOBRJ.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MenuPage : TabbedPage
+	public partial class Pagina3 : ContentPage
 	{
-		public MenuPage ()
+		public Pagina3 ()
 		{
 			InitializeComponent ();
-           
-        }
-
+		}
 	}
 }

@@ -1,32 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinMOBRJ.Views.Pagina2"
+             x:Class="XamarinMOBRJ.Views.Pagina3"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-
-            <ListView IsGroupingEnabled="True"      
-                      GroupDisplayBinding="{Binding Key}"
-                      GroupShortNameBinding="{Binding Key}"
-                      ItemsSource="{Binding DadosAgrupados}"
-                      IsRefreshing="{Binding IsBusy}"
-                      HasUnevenRows="True"
-                      >
-
-                <ListView.Header>
-                    <StackLayout>
-                        <SearchBar  Text="{Binding TextoSearchbar}"
-                                    SearchCommand="{Binding ComandoPesquisar}"
-                                    Placeholder="Search"
-                                    HeightRequest="42"
-                                    Opacity="1"
-                                    />
-                    </StackLayout>
-                </ListView.Header>
-
+            <ListView ItemsSource="{Binding EstadosSqLite}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -42,22 +23,22 @@
                                         <RowDefinition Height="30"/>
                                     </Grid.RowDefinitions>
 
-                                    <Image Source="{Binding fields.ImgUrl}"
+                                    <Image Source="{Binding ImgUrl}"
                                            HorizontalOptions="FillAndExpand"
                                            VerticalOptions="FillAndExpand"
                                            Grid.Row="0"
                                            Grid.RowSpan="2"
                                            Grid.Column="0"/>
 
-                                    <Label Text="{Binding fields.Capital}"
+                                    <Label Text="{Binding Capital}"
                                            Grid.Row="0"
                                            Grid.Column="1"/>
 
-                                    <Label Text="{Binding fields.Sigla}"
+                                    <Label Text="{Binding Sigla}"
                                            Grid.Row="1"
                                            Grid.Column="1"/>
 
-                                    <Label Text="{Binding fields.Estado}"
+                                    <Label Text="{Binding Estado}"
                                            Grid.Row="0"
                                            Grid.Column="2"/>
                                 </Grid>
@@ -66,9 +47,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Proxima página"
+
+            <Button Text="Gravar" 
                     IsEnabled="{Binding IsNotBusy}"
-                    Command="{Binding ComandoNavegar}" /> 
+                    Command="{Binding ComandoGravar}"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

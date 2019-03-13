@@ -7,9 +7,61 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Pagina1"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <ListView ItemsSource="{Binding ListaEstados}"
+                      IsRefreshing="{Binding IsBusy}"
+                      HasUnevenRows="True">
+                
+                <ListView.Header>
+                    <StackLayout>
+                        <SearchBar  Text="{Binding TextoSearchbar}"
+                                    SearchCommand="{Binding ComandoPesquisar}"
+                                    Placeholder="Search"
+                                    HeightRequest="42"
+                                    Opacity="1"
+                                    />
+                    </StackLayout>
+                </ListView.Header>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding fields.ImgUrl}"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="FillAndExpand"
+                                           Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Grid.Column="0"/>
+
+                                    <Label Text="{Binding fields.Capital}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"/>
+
+                                    <Label Text="{Binding fields.Sigla}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"/>
+
+                                    <Label Text="{Binding fields.Estado}"
+                                           Grid.Row="0"
+                                           Grid.Column="2"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

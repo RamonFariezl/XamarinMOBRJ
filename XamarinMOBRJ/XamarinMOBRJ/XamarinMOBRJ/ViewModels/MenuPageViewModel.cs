@@ -11,7 +11,7 @@ namespace XamarinMOBRJ.ViewModels
         public MenuPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) 
             : base(navigationService,pageDialogService)
         {
-            
+            Title = "Projeto MOBRJ";
         }
     }
 }

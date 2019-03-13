@@ -1,9 +1,12 @@
 ﻿using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
+using SQLite;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinMOBRJ.Helpers;
+using XamarinMOBRJ.Services;
 using XamarinMOBRJ.ViewModels;
 using XamarinMOBRJ.Views;
 
@@ -12,6 +15,8 @@ namespace XamarinMOBRJ
 {
     public partial class App : PrismApplication
     {
+        //public static SQLiteAsyncConnection SqlConnection;
+
         public App()
             : this(null)
         {
@@ -34,16 +39,22 @@ namespace XamarinMOBRJ
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("MenuPage?createTab=Pagina1&createTab=Pagina2");
+            await NavigationService.NavigateAsync("/NavigationPage/MenuPage?createTab=Pagina1&createTab=Pagina2");
         }
+
+       
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            //containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
 
-            containerRegistry.RegisterForNavigation<MenuPage>();
-            containerRegistry.RegisterForNavigation<Pagina1>();
-            containerRegistry.RegisterForNavigation<Pagina2>();
+            containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
+            containerRegistry.RegisterForNavigation<Pagina1, Pagina1ViewModel>();
+            containerRegistry.RegisterForNavigation<Pagina2, Pagina2ViewModel>();
+            containerRegistry.RegisterForNavigation<Pagina3, Pagina3ViewModel>();
+
+            containerRegistry.RegisterSingleton<IApiService, ApiService>();
+            //containerRegistry.RegisterSingleton<IDatabaseAccess, DatabaseHelper>();
 
         }
 
